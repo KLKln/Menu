@@ -14,22 +14,6 @@ import menu.beans.MenuItem;
 import menu.controller.BeanConfiguration;
 import menu.repository.MenuItemRepository;
 
-/*@SpringBootApplication
-public class MenuApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(MenuApplication.class);
-		
-		ApplicationContext appContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
-	
-		MenuItem m = appContext.getBean("menuItem", MenuItem.class);
-		
-		System.out.println(m.toString());
-	}
-	
-
-}*/
-
 @SpringBootApplication
 public class MenuApplication implements CommandLineRunner {
 	public static void main(String[] args) {
@@ -44,12 +28,19 @@ public class MenuApplication implements CommandLineRunner {
 		
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
 		
-		MenuItem m = appContext.getBean("menuitem", MenuItem.class);
-		m.setDietaryDescription("Spicy");
-		repo.save(m);
 		
-		MenuItem i = new MenuItem("Jalapeno Poppers", "Vegetarian", 8.99, "Spicy");
-		repo.save(i);
+		MenuItem poppers = new MenuItem("Jalapeno Poppers", "Vegetarian", 8.99, "Spicy");
+		repo.save(poppers);
+		MenuItem ribeye = new MenuItem("Ribeye", "Paleo", 17.99, "Not Spicy");
+		repo.save(ribeye);
+		MenuItem shrimpCurry = new MenuItem("Shrimp Curry", "Pescatarian", 16.99, "Spicy");
+		repo.save(shrimpCurry);
+		MenuItem salad = new MenuItem("Kale Tempeh Salad", "Vegan",10.99, "Not Spicy");
+		repo.save(salad);
+		MenuItem chickenSandwich = new MenuItem("Chicken Sandwich", "Poultry", 9.99, "Not Spicy");
+		repo.save(chickenSandwich);
+		MenuItem chickenFriedSteak = new MenuItem("Chicken Fried Steak", "Beef", 12.99, "Not Spicy");
+		repo.save(chickenFriedSteak);
 		List<MenuItem> menu = repo.findAll();
 		for(MenuItem menuitems: menu) {
 			System.out.println(menuitems.toString());
